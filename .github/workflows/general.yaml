@@ -35,8 +35,6 @@ jobs:
     # Consider switching off docker
     name: Build container
     runs-on: ubuntu-latest
-    outputs:
-      imageNameApp: ${{ steps.build-app-container.outputs.imageName }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2

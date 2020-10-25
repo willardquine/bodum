@@ -75,7 +75,7 @@ jobs:
         uses: brpaz/structure-tests-action@v1.1.2
         with: 
           # image: "willardquine/bodum-test:latest"
-          image: "bodum-test:${{github.sha}}"
+          image: "willardquine/bodum-test:${{github.sha}}"
           configFile: ./app/Dockerfile-test.yaml
 
       # - name: Build App container

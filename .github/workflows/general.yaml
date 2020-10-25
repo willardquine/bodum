@@ -68,6 +68,8 @@ jobs:
           tags: |
             willardquine/bodum-test:latest
             willardquine/bodum-test:${{github.sha}}
+            bodum-test:${{github.sha}}
+            bodum-test:latest
           push: true
 
       # https://github.com/MageMates/debian-stretch/blob/62f28540da42ab7cc8eb5f540d51b337d39a667d/.github/workflows/ci.yml#L60
@@ -75,7 +77,7 @@ jobs:
         uses: brpaz/structure-tests-action@v1.1.2
         with: 
           # image: "willardquine/bodum-test:latest"
-          image: "willardquine/bodum-test:${{github.sha}}"
+          image: "bodum-test:latest"
           configFile: ./app/Dockerfile-test.yaml
 
       # - name: Build App container

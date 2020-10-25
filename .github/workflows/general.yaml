@@ -69,7 +69,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASS }}
 
       - name: Build
-        id: docker_build
+        id: docker_build_push
         uses: docker/build-push-action@v2
         with: 
           context: ./app
@@ -79,6 +79,17 @@ jobs:
             willardquine/bodum-test:${{github.sha}}
             localhost:5000/willardquine/bodum-test:${{github.sha}}
           push: true
+
+      - name: Build
+        id: docker_build_load
+        uses: docker/build-push-action@v2
+        with: 
+          context: ./app
+          file: ./app/Dockerfile
+          tags: |
+            willardquine/bodum-test:latest
+            willardquine/bodum-test:${{github.sha}}
+            localhost:5000/willardquine/bodum-test:${{github.sha}}
           load: true
 
       # https://github.com/MageMates/debian-stretch/blob/62f28540da42ab7cc8eb5f540d51b337d39a667d/.github/workflows/ci.yml#L60
@@ -89,10 +100,21 @@ jobs:
           image: "localhost:5000/willardquine/bodum-test:${{github.sha}}"
           configFile: ./app/Dockerfile-test.yaml
 
+      - name: Build
+        id: docker_build_load
+        uses: docker/build-push-action@v2
+        with: 
+          context: ./app
+          file: ./app/Dockerfile
+          tags: |
+            willardquine/bodum-test:latest
+            willardquine/bodum-test:${{github.sha}}
+            localhost:5000/willardquine/bodum-test:${{github.sha}}
+          load: true
+
       - name: Test container structure, again
         uses: brpaz/structure-tests-action@v1.1.2
         with: 
-          # image: "willardquine/bodum-test:latest"
           image: "willardquine/bodum-test:${{github.sha}}"
           configFile: ./app/Dockerfile-test.yaml
 

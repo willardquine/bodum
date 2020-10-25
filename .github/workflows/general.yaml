@@ -64,10 +64,11 @@ jobs:
           tags: |
             willardquine/bodum-test:latest
           push: true
+
       - name: Test container structure
         uses: brpaz/structure-tests-action@v1.1.2
         with: 
-          image: willardquine/bodum-test:latest
+          image: "willardquine/bodum-test:latest"
           configFile: ./app/Dockerfile-test.yaml
 
       # - name: Build App container

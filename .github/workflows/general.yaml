@@ -61,7 +61,9 @@ jobs:
         with: 
           context: ./app
           file: ./app/Dockerfile
-          tags: willardquine/bodum-test:latest
+          tags: |
+            willardquine/bodum-test:$GITHUB_SHA
+            willardquine/bodum-test:latest
           push: true
 
       # - name: Build App container

@@ -55,3 +55,8 @@ static code analysis (sonarqube)
   - unit code tests
 2. Application
   - E2E testing
+  - kubetest (https://github.com/kubernetes/test-infra/tree/master/kubetest) / kubetest2 (https://github.com/kubernetes-sigs/kubetest2)
+  - helm tests
+  - kind
+  
+3. DB Operations

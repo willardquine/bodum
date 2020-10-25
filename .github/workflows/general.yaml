@@ -1,3 +1,9 @@
+# using a short SHA
+# https://github.community/t/add-short-sha-to-github-context/16418/12
+
+# gotcha when dealing with PRs
+# https://github.community/t/github-sha-isnt-the-value-expected/17903/2
+
 ---
 name: general
 
@@ -62,9 +68,9 @@ jobs:
           tags: |
             willardquine/bodum-test:latest
             willardquine/bodum-test:${{github.sha}}
-            bodum-test:${{github.sha}}
           push: true
 
+      # https://github.com/MageMates/debian-stretch/blob/62f28540da42ab7cc8eb5f540d51b337d39a667d/.github/workflows/ci.yml#L60
       - name: Test container structure
         uses: brpaz/structure-tests-action@v1.1.2
         with: 

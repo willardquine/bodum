@@ -1,0 +1,23 @@
+# Template for building and testing containers
+
+# later: establish a persistent build cache
+
+# Inputs
+# - name
+# - context
+# - dockerfile local
+
+# Process
+# - build
+# - structural test (general)
+# - structural test (specific)
+
+
+# Outputs
+# - success status
+# - container SHA
+# - container-name (probably a non-prod name)
+
+---
+
+...

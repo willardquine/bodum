@@ -78,7 +78,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Test container structure
-        uses: brpaz/structure-tests-action@v1
+        uses: brpaz/structure-tests-action@v1.9.1
         with: 
           image: willardquine/bodum-test:latest
           configFile: ./app/Dockerfile-test.yaml

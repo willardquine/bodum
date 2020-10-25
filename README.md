@@ -34,4 +34,24 @@ static code analysis (sonarqube)
 ## Blog Post ideas
 * Docker image building within github actions
   - the official docker build action doesn't allow the use of envvars within the `with` block
-  
+  - this prevents the issuance of dynamic tags with 
+  - the old docker image provided with `tag_with_ref`
+  - https://github.com/docker/build-push-action/issues/116
+  - https://docs.github.com/en/free-pro-team@latest/actions/guides/publishing-docker-images#publishing-images-to-docker-hub-and-github-packages
+
+
+* disk between builds
+
+* dynamically creating github action files
+  - e.g. one action per container
+
+* kubernetes in a container for testing
+
+
+
+## Testing
+1. Container
+  - structural tests
+  - unit code tests
+2. Application
+  - E2E testing

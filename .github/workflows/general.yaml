@@ -61,6 +61,7 @@ jobs:
           file: ./app/Dockerfile
           tags: |
             willardquine/bodum-test:latest
+            willardquine/bodum-test:${{github.sha}}
           push: true
 
       - name: Test container structure

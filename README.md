@@ -38,6 +38,7 @@ static code analysis (sonarqube)
   - the old docker image provided with `tag_with_ref`
   - https://github.com/docker/build-push-action/issues/116
   - https://docs.github.com/en/free-pro-team@latest/actions/guides/publishing-docker-images#publishing-images-to-docker-hub-and-github-packages
+  - NOPE: you have to use the undocumented `${{github.sha}}` to refer to the git sha
 
 
 * disk between builds
@@ -58,5 +59,5 @@ static code analysis (sonarqube)
   - kubetest (https://github.com/kubernetes/test-infra/tree/master/kubetest) / kubetest2 (https://github.com/kubernetes-sigs/kubetest2)
   - helm tests
   - kind
-  
+
 3. DB Operations

@@ -1,0 +1,19 @@
+---
+schemaVersion: "2.0.0"
+
+# NB: runnign the container as a standalone and expecting it to respond to web requests
+# is not the intended usecase of 
+# commandTests:
+#   - name: Check homepage
+#     command: "bash"
+#     args: 
+#       - -c
+#       - "/go/src/app/app &"
+#       - curl
+#       - "http://localhost:8080"
+#     expectedOutput: ["Hello World"]
+
+fileExistenceTests:
+  - name: Application file exists
+    path: /go/src/app/app
+...

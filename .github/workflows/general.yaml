@@ -1,0 +1,74 @@
+---
+name: general-workflow
+
+on: push
+
+jobs:
+  go-test:
+    name: Run Golang Unit Tests
+    runs-on: ubuntu-latest
+    # TODO: Use strategy.matrix to test a couple of Golang versions simultaneously
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Load Golang
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.14'
+      - name: Go Tests
+        run: go test ./
+        working-directory: ./app
+        env:
+          # https://github.com/golang/go/issues/27303#issuecomment-504964623
+          CGO_ENABLED: "0"
+      - name: Go Benchmarks
+        run: go test --benchmark ./
+        working-directory: ./app
+        env:
+          # https://github.com/golang/go/issues/27303#issuecomment-504964623
+          CGO_ENABLED: "0"
+
+
+  build-app-container:
+    # Q: How can I build a container for LOCAL use only? I don't want to push it to use it
+    # A: It's actually fine to push it to a temporary location
+    # Consider switching off docker
+    name: Build container
+    runs-on: ubuntu-latest
+    outputs:
+      imageNameApp: ${{ steps.build-app-container.outputs.imageName }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Install docker build
+        id: docker-build
+        uses: docker/setup-buildx-action@v1
+        with: 
+          install: true 
+      - name: Build
+        uses: docker/build-push-action@v2
+        with: 
+          context: ./app
+          push: false
+
+
+      # - name: Build App container
+      #   id: build-app-container
+      #   run: docker build -q ./app
+        # run: echo "::set-output name=imageName::$(docker build -q .)"
+
+  test-app-container:
+    name: Run static tests against container
+    runs-on: ubuntu-latest
+    needs: build-app-container
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Test container structure
+        uses: brpaz/structure-tests-action@v1
+        with: 
+          image: ${{needs.build-app-container.outputs.imageNameApp }}
+          configFile: ./app/Dockerfile-test.yaml
+...

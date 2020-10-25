@@ -45,7 +45,8 @@ jobs:
     services:
       container-registry:
         image: registry:2
-        ports: [ 5000:5000 ]
+        ports: 
+          - "5000:5000"
     
     steps:
       - name: Checkout code

@@ -33,3 +33,5 @@ static code analysis (sonarqube)
 
 ## Blog Post ideas
 * Docker image building within github actions
+  - the official docker build action doesn't allow the use of envvars within the `with` block
+  

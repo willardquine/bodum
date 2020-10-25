@@ -62,7 +62,7 @@ jobs:
           context: ./app
           file: ./app/Dockerfile
           tags: |
-            willardquine/bodum-test:$GITHUB_SHA
+            willardquine/bodum-test:${{GITHUB_SHA}}
             willardquine/bodum-test:latest
           push: true
 

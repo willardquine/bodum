@@ -111,16 +111,29 @@ jobs:
       #   run: docker build -q ./app
         # run: echo "::set-output name=imageName::$(docker build -q .)"
 
-  # test-app-container:
-  #   name: Run static tests against container
-  #   runs-on: ubuntu-latest
-  #   needs: build-app-container
-  #   steps: 
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-  #     - name: Test container structure
-  #       uses: brpaz/structure-tests-action@v1.1.2
-  #       with: 
-  #         image: willardquine/bodum-test:latest
-  #         configFile: ./app/Dockerfile-test.yaml
+  test-app-container:
+    name: Run static tests against container
+    runs-on: ubuntu-latest
+    needs: build-app-container
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Test container structure
+        uses: brpaz/structure-tests-action@v1.1.2
+        with: 
+          image: willardquine/bodum-test:latest
+          configFile: ./app/Dockerfile-test.yaml
+
+  test-app-container-2:
+    name: Run static tests against container
+    runs-on: ubuntu-latest
+    needs: build-app-container
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Test container structure
+        uses: brpaz/structure-tests-action@v1.1.2
+        with: 
+          image: localhost:5000/willardquine/bodum-test:latest
+          configFile: ./app/Dockerfile-test.yaml
 ...
